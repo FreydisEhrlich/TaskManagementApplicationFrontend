@@ -11,24 +11,35 @@
          <li class="nav-item active">
             <a class="navbar-brand" style="color:white;" routerLink="/tasks">Tasks</a>
          </li>
+         <li class="nav-item active">
+            <a class="nav-link" (click)="onOpenModal(null, 'add')">Add Task <span class="sr-only">(current)</span></a>
+         </li>
      </ul>
+     <form class="form-inline my-2 my-lg-0">
+      <input type="search" (ngModelChange)="searchTasks(key.value)" #key="ngModel" ngModel
+       name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search tasks..." required>
+   </form>
     </div>
   </nav>
   <div class="container" id="main-container">
-  <div class="row">
-    <div *ngFor="let task of tasks" class="col-md-6 col-xl-3">
-       <div class="card m-b-30">
+  <div class="column">
+    <div *ngFor="let task of tasks" class="form-outline flex-fill">
+       <div class="form-outline flex-fill">
           <div class="card-body row">
-             <div class="col-6">
-                <a href=""><img src="{{task?.deadline}}" alt="" class="img-fluid img-thumbnail"></a>
-             </div>
-             <div class="col-6 card-title align-self-center mb-0">
+            <input class="form-check-input me-2" type="checkbox" unchecked/>
+             <div class="form-outline flex-fill">
                 <h5>{{task?.title}}</h5>
              </div>
           </div>
           <ul class="list-group list-group-flush">
-             <li class="list-group-item"><i class="fa fa-envelope float-right"></i>{{task?.completed}}</li>
-          </ul>
+             <li class="list-group-item"><i class="form-outline flex-fill"></i>{{task?.deadline}}</li>
+            </ul>
+          <div class="card-body">
+            <div class="float-right btn-group btn-group-sm">
+               <a (click)="onOpenModal(task, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+               <a (click)="onOpenModal(task, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
+            </div>
+         </div>
        </div>
     </div>
   </div>
@@ -49,12 +60,12 @@
                 <input type="text" ngModel name="title" class="form-control" id="title" placeholder="Title" required>
              </div>
              <div class="form-group">
-                <label for="email">completed</label>
-                <input type="completed" ngModel name="completed" class="form-control" id="completed" placeholder="completed" required>
+                <label for="email">User ID</label>
+                <input type="string" ngModel name="userId" class="form-control" id="userId" placeholder="User ID" required>
              </div>
              <div class="form-group">
-                <label for="phone">deadline</label>
-                <input type="text" ngModel name="deadline" class="form-control" id="deadline" placeholder="deadline" required>
+                <label for="phone">Deadline</label>
+                <input type="date" ngModel name="deadline" class="form-control" id="deadline" placeholder="deadline" required>
              </div>
              <div class="modal-footer">
                 <button type="button" id="add-task-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -83,8 +94,8 @@
                  </div>
                  <input type="hidden" ngModel="{{editTask?.id}}" name="id" class="form-control" id="id" placeholder="title">
                  <div class="form-group">
-                    <label for="email">completed</label>
-                    <input type="completed" ngModel="{{editTask?.completed}}" name="completed" class="form-control" id="completed" placeholder="completed">
+                    <label for="email">userId</label>
+                    <input type="string" ngModel="{{editTask?.userId}}" name="user" class="form-control" id="userId" placeholder="userId">
                  </div>
                  <div class="form-group">
                     <label for="phone">deadline</label>
@@ -113,7 +124,7 @@
               <p>Are you sure you want to delete task {{deleteTask?.title}}?</p>
               <div class="modal-footer">
                  <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                 <!-- <button (click)="onDeleteTask(deleteTask?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button> -->
+                 <button (click)="onDeleteTask(deleteTask?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button> 
               </div>
            </div>
         </div>

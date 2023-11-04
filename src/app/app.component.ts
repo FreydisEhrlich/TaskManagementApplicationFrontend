@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { User } from './user';
-import { UserService } from './user.service';
+import { User } from './model/user';
+import { UserService } from './service/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 

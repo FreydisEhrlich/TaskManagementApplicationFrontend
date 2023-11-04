@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
-import { TaskComponent } from './task/task.component';
-import { UserComponent } from './user/user.component';
+import { TaskComponent } from './taskComponent/task.component';
+import { UserComponent } from './userComponent/user.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/users', pathMatch: 'full' },

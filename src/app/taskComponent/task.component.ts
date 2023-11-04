@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Task } from './task';
-import { TaskService } from './task.service';
+import { Task } from '../model/task';
+import { TaskService } from '../service/task.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgForm } from '@angular/forms';
 
