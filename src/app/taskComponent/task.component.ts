@@ -13,6 +13,7 @@ export class TaskComponent {
   public tasks: Task[] | undefined;
   public editTask: Task | undefined | null;
   public deleteTask: Task | undefined | null;
+  
 
   constructor(private taskService: TaskService){}
 
@@ -49,6 +50,7 @@ export class TaskComponent {
         alert(error.message);
         addForm.reset();
       }
+
     )
   }
   

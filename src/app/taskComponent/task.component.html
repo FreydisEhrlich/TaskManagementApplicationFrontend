@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" style="color:white;">Task Manager</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -23,23 +23,24 @@
   </nav>
   <div class="container" id="main-container">
   <div class="column">
-    <div *ngFor="let task of tasks" class="form-outline flex-fill">
-       <div class="form-outline flex-fill">
-          <div class="card-body row">
-            <input class="form-check-input me-2" type="checkbox" unchecked/>
-             <div class="form-outline flex-fill">
-                <h5>{{task?.title}}</h5>
-             </div>
-          </div>
-          <ul class="list-group list-group-flush">
-             <li class="list-group-item"><i class="form-outline flex-fill"></i>{{task?.deadline}}</li>
+    <div *ngFor="let task of tasks" class="col-md-2 col-xl-6">
+       <div class="card m-b-30">
+          <ul class="list-group-item d-flex align-items-center ps-0 pe-3 py-1 rounded-0 border-0 bg-transparent">
+            <td>{{task?.completed}}</td>
+         <li
+            class="list-group-item px-3 py-1 d-flex align-items-center flex-grow-1 border-0 bg-transparent">
+            <p class="lead fw-normal mb-0">{{task?.title}}</p>
+          </li>
+             <li
+                class="list-group-item px-3 py-1 d-flex align-items-center flex-grow-1 border-0 bg-transparent">
+                <p class="lead fw-normal mb-0">{{task?.deadline}}</p>
+              </li>
+              <li
+              class="list-group-item px-3 py-1 d-flex align-items-center flex-grow-1 border-0 bg-transparent">
+              <a (click)="onOpenModal(task, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+              <a (click)="onOpenModal(task, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
+            </li>
             </ul>
-          <div class="card-body">
-            <div class="float-right btn-group btn-group-sm">
-               <a (click)="onOpenModal(task, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
-               <a (click)="onOpenModal(task, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
-            </div>
-         </div>
        </div>
     </div>
   </div>
@@ -99,8 +100,12 @@
                  </div>
                  <div class="form-group">
                     <label for="phone">deadline</label>
-                    <input type="text" ngModel="{{editTask?.deadline}}" name="deadline" class="form-control" id="deadline" placeholder="deadline">
+                    <input type="date" ngModel="{{editTask?.deadline}}" name="deadline" class="form-control" id="deadline" placeholder="deadline">
                  </div>
+                 <div class="form-group">
+                  <label for="phone">done</label>
+                  <input type="checkbox" ngModel="{{editTask?.completed}}" name="completed" class="form-control" id="completed" placeholder="completed">
+               </div>
                  <div class="modal-footer">
                     <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
                     <button (click)="onUpdateTask(editForm.value)" data-dismiss="modal" class="btn btn-primary" >Save changes</button>
